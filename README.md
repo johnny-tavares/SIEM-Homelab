@@ -167,5 +167,4 @@ Set up a virtual SIEM environment using Splunk to collect and monitor logs from 
 Just search for:
 ```spl
 index=* source="/var/log/fim_alerts.log" "WARNING"
-
-
+```
