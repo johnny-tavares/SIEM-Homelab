@@ -2,12 +2,13 @@
 
 ## Overview
 
-Set up a virtual SIEM environment using Splunk to collect and monitor logs from Linux endpoints. This homelab simulates realistic detection scenarios for common attack behaviors.
+Set up a virtual SIEM environment using Splunk to collect and monitor logs from Linux endpoints and Windows Active Directory Infrastructure. This homelab simulates realistic detection scenarios for common attack behaviors across both Windows and Linux environments.
 
 ---
 
 ## Lab Setup
 
+### Core Infrastructure
 1. **Environment**
 
    * VMware VM running Debian (no desktop environment).
@@ -44,10 +45,23 @@ Set up a virtual SIEM environment using Splunk to collect and monitor logs from 
      sudo /opt/splunkforwarder/bin/splunk enable boot-start
      sudo systemctl enable SplunkForwarder
      ```
+### Active Directory Expansion
+4. **Windows Domain Controller Setup**
+   
+   * Windows server VM configured as Domain Controller
+   * Splunk Universal Forwarder installed and configured on DC
+   * Install "Splunk Add-On for Microsoft Windows"
+5. **AD Forwarder Configuration**
+
+   * Outputs configured to send to main Splunk server (port 9997)
+   * Windows Event Logs (Security, System, Application) forwarded to index=main through:
+     ```powershell
+     & "C:\Program Files\SplunkUniversalForwarder\etc\system\local\inputs.conf"
+     ```
 
 ---
 
-## Machine Setup
+## Linux Machine Setup
 
 * **Exported SSH Logs for Monitoring**
 
@@ -143,6 +157,8 @@ Set up a virtual SIEM environment using Splunk to collect and monitor logs from 
 
 ## Screenshots
 
+## Linux-Based Detections
+
 ### Brute Force Alert
 
 ![Brute Force Search](https://github.com/johnny-tavares/SIEM-Homelab/blob/master/Screenshot%202025-06-03%20020014.png)
@@ -168,3 +184,11 @@ Just search for:
 ```spl
 index=* source="/var/log/fim_alerts.log" "WARNING"
 ```
+
+## Active Directory Attack Detection
+
+### Kerberoasting Detection
+
+
+
+### Golden Ticket Usage
