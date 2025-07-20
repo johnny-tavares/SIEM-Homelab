@@ -169,7 +169,7 @@ Set up a virtual SIEM environment using Splunk to collect and monitor logs from 
 
 ---
 
-## Screenshots
+# Screenshots
 
 ## Linux-Based Detections
 
