@@ -154,7 +154,7 @@ Set up a virtual SIEM environment using Splunk to collect and monitor logs from 
     ```
 ## AD Machine Setup
 
-* **Kerberos Auditing**
+**Kerberos Auditing**
   
 1. Open **Edit Group Policy** on Domain Controller
 2. Go to: `Computer Configuration > Windows Settings > Security Settings > Advanced Audit Policy Configuration > System Audit Policy Configuration > Account Logon`
